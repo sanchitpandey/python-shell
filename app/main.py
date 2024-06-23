@@ -1,10 +1,14 @@
 import sys
+import os
 
 def main():
     builtin = ["echo", "exit", "type"]
+    exec = []
     while True:
         sys.stdout.write("$ ")
         sys.stdout.flush()
+
+        paths = os.getenv("PATH").split(":")
 
         x = input()
         if (x == "exit 0"):
@@ -12,14 +16,18 @@ def main():
         elif (x == "exit 1"):
             exit(1)
         elif (x[:4]=="echo"):
-            print(x[5:])
+            sys.stdout.write(x[5:])
         elif (x[:4]=="type"):
             if (x[5:] in builtin):
-                print(x[5:]+" is a shell builtin")
+                sys.stdout.write(x[5:]+" is a shell builtin")
             else:
-                print(x[5:]+": not found")
+                for path in paths:
+                    for cmd in os.listdir(path):
+                        if (x[5:] == cmd):
+                            sys.stdout.write(x[5:]+" is "+path+cmd)
+                sys.stdout.write(x[5:]+"is ")
         else:
-            print(x+": command not found")
+            sys.stdout.write(x+": command not found")
 
 
 if __name__ == "__main__":
