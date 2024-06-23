@@ -8,7 +8,10 @@ def main():
         x = input()
         if (x == "exit 0"):
             exit(0)
-        print(x+": command not found")
+        elif (x[:4]=="echo"):
+            print(x[5:])
+        else:
+            print(x+": command not found")
 
 
 if __name__ == "__main__":
