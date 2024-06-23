@@ -18,13 +18,16 @@ def main():
             exit(1)
         elif x[:4] == "echo":
             sys.stdout.write(x[5:] + "\n")
-        elif x[:3]== "pwd":
+        elif x[:3] == "pwd":
             sys.stdout.write(os.getcwd() + "\n")
         elif x[:2] == "cd":
-            if os.path.exists(x[3:]):
-                os.chdir(x[3:])
+            target_dir = x[3:].strip()
+            if target_dir == "~" or target_dir == "":
+                target_dir = os.getenv("HOME", "")
+            if os.path.exists(target_dir):
+                os.chdir(target_dir)
             else:
-                sys.stdout.write("cd: "+x[3:]+": No such file or directory\n")
+                sys.stdout.write("cd: " + target_dir + ": No such file or directory\n")
         elif x[:4] == "type":
             command = x[5:]
             if command in builtin:
