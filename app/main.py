@@ -6,6 +6,8 @@ def main():
         sys.stdout.flush()
 
         x = input()
+        if (x == "exit 0"):
+            exit(0)
         print(x+": command not found")
 
 
