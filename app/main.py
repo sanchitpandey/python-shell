@@ -3,7 +3,7 @@ import os
 import subprocess
 
 def main():
-    builtin = ["echo", "exit", "type", "pwd"]
+    builtin = ["echo", "exit", "type", "pwd", "cd"]
 
     while True:
         sys.stdout.write("$ ")
@@ -20,6 +20,8 @@ def main():
             sys.stdout.write(x[5:] + "\n")
         elif x[:3]== "pwd":
             sys.stdout.write(os.getcwd() + "\n")
+        elif x[:2] == "cd":
+            os.chdir(x[3:])
         elif x[:4] == "type":
             command = x[5:]
             if command in builtin:
