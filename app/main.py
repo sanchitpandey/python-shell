@@ -21,7 +21,10 @@ def main():
         elif x[:3]== "pwd":
             sys.stdout.write(os.getcwd() + "\n")
         elif x[:2] == "cd":
-            os.chdir(x[3:])
+            if os.path.exists(x[3:]):
+                os.chdir(x[3:])
+            else:
+                sys.stdout.write("cd: "+x[3:]+": No such file or directory\n")
         elif x[:4] == "type":
             command = x[5:]
             if command in builtin:
