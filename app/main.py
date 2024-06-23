@@ -25,7 +25,7 @@ def main():
                 for path in paths:
                     if os.path.isfile(path+"/"+x[5:]):
                         found = 1;
-                        sys.stdout.write(x[5:]+"is "+path+"/"+x[5:]+"\n")
+                        sys.stdout.write(x[5:]+" is "+path+"/"+x[5:]+"\n")
                 if (found == 0):
                     sys.stdout.write(x[5:]+": not found\n")
         else:
