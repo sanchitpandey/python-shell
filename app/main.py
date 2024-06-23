@@ -1,12 +1,10 @@
 import sys
 
 def main():
-    # Uncomment this block to pass the first stage
-    sys.stdout.write("$ ")
-    sys.stdout.flush()
-
-    # Wait for user input
     while True:
+        sys.stdout.write("$ ")
+        sys.stdout.flush()
+
         x = input()
         print(x+": command not found")
 
